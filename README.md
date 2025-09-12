@@ -1,3 +1,3 @@
-## hi
+## Hello!
 
-lorem
+This is a test repository.
