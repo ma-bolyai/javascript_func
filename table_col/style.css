@@ -5,3 +5,25 @@ td {
   border: 2px solid black;
   border-collapse: collapse;
 }
+
+/* first one overwrites second */
+/* thead ~ tbody tr {
+  background-color: black;
+}
+
+tbody > tr {
+  background-color: green;
+} */
+
+thead:first-child,
+tbody tr:last-of-type {
+  background-color: skyblue;
+}
+
+tbody tr:nth-child(2n + 1) {
+  background-color: plum;
+}
+
+tbody tr:hover {
+  background-color: red;
+}
