@@ -1,0 +1,19 @@
+table,
+th,
+td {
+  border: 2px dotted green;
+  border-collapse: collapse;
+}
+
+tbody {
+  background-color: yellow;
+}
+
+thead tr:nth-child(2n + 1),
+tbody tr:nth-child(2n) {
+  background-color: lightblue;
+}
+
+tr:hover {
+  color: red;
+}
