@@ -16,4 +16,5 @@ tbody tr:nth-child(2n) {
 
 tr:hover {
   color: red;
+  font-weight: bold;
 }
