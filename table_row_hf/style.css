@@ -1,0 +1,21 @@
+table,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+tr:hover,
+tr:has(td[rowspan]):hover + tr,
+tr:not(:has(:hover)):has(+ tr:hover):has(td[rowspan]) {
+  font-weight: 800;
+  background-color: #555;
+  color: #fff;
+}
+
+td:last-child,
+td:nth-last-child(3) {
+  background-color: #999;
+}
+
+/* tanar ur ez a vilag legrakosabb dolga kerem tobbet ne adjon fel ilyet, inkabb akkor hasznaljunk mar scss-t <3 */
