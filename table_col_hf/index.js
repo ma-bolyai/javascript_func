@@ -27,22 +27,29 @@ const arr = [
   },
 ];
 
-// const table = document.createElement("table");
-// const thead = document.createElement("thead");
-// const tbody = document.createElement("tbody");
+const table = document.createElement("table");
+const thead = document.createElement("thead");
+const tbody = document.createElement("tbody");
 
-// let th = document.createElement("th");
-// let tr = document.createElement("tr");
-// let td = document.createElement("td");
+let th = document.createElement("th");
+let tr = document.createElement("tr");
+let td = document.createElement("td");
 
-// document.body.appendChild(table);
-// table.appendChild(thead);
-// thead.appendChild(tr);
+document.body.appendChild(table);
+table.appendChild(thead);
+thead.appendChild(tr);
 
-// for (let i = 0; i < 3; i++) {
-//   tr.appendChild(th);
-//   th = document.createElement("th");
-// }
+for (let i = 0; i < 3; i++) {
+  tr.appendChild(th);
+  th = document.createElement("th");
+}
+table.appendChild(tbody);
 
-// table.appendChild(tbody);
-// tbody.appendChild(tr);
+for (let i = 0; i < 4; i++) {
+  tr = document.createElement("tr");
+  tbody.appendChild(tr);
+  for (let k = 0; k < 4; k++) {
+    tr.appendChild(td);
+    td = document.createElement("td");
+  }
+}
