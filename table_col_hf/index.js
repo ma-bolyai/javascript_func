@@ -27,6 +27,8 @@ const arr = [
   },
 ];
 
+const headingData = ["Fizika területe", "Időszak", "Képviselők"];
+
 const table = document.createElement("table");
 const thead = document.createElement("thead");
 const tbody = document.createElement("tbody");
@@ -38,14 +40,6 @@ let td = document.createElement("td");
 document.body.appendChild(table);
 table.appendChild(thead);
 thead.appendChild(tr);
-
-const headingData = ["Fizika területe", "Időszak", "Képviselők"];
-const tableData = [
-  ["Optika", "XI. század", "Alhazen"],
-  ["Asztronómia", "reneszánsz", "Kepler", "Galilei"],
-  ["Kvantumfizika", "XIX-XX. század", "Max Planck", "Albert Einstein"],
-  ["Modern fizika", "XX-XXI. század", "Richard Feynman", "Stephen Hawking"],
-];
 
 for (let i = 0; i < 3; i++) {
   tr.appendChild(th);
@@ -63,7 +57,7 @@ for (let i = 0; i < 4; i++) {
   if (i == 0) {
     for (let k = 0; k < 3; k++) {
       tr.appendChild(td);
-      td.innerText = tableData[i][k];
+      td.innerText = arr[i][Object.keys(arr[k])[k]];
       if (k == 2) {
         td.colSpan = 2;
       }
@@ -72,7 +66,7 @@ for (let i = 0; i < 4; i++) {
   } else {
     for (let k = 0; k < 4; k++) {
       tr.appendChild(td);
-      td.innerText = tableData[i][k];
+      td.innerText = arr[i][Object.keys(arr[k])[k]];
       td = document.createElement("td");
     }
   }
