@@ -39,9 +39,17 @@ document.body.appendChild(table);
 table.appendChild(thead);
 thead.appendChild(tr);
 
+const headingData = ["Fizika területe", "Időszak", "Képviselők"];
+const tableData = [
+  ["Optika", "XI. század", "Alhazen"],
+  ["Asztronómia", "reneszánsz", "Kepler", "Galilei"],
+  ["Kvantumfizika", "XIX-XX. század", "Max Planck", "Albert Einstein"],
+  ["Modern fizika", "XX-XXI. század", "Richard Feynman", "Stephen Hawking"],
+];
+
 for (let i = 0; i < 3; i++) {
   tr.appendChild(th);
-  th.innerText = "heading";
+  th.innerText = headingData[i];
   if (i == 2) {
     th.colSpan = 2;
   }
@@ -55,7 +63,7 @@ for (let i = 0; i < 4; i++) {
   if (i == 0) {
     for (let k = 0; k < 3; k++) {
       tr.appendChild(td);
-      td.innerText = "data";
+      td.innerText = tableData[i][k];
       if (k == 2) {
         td.colSpan = 2;
       }
@@ -64,7 +72,7 @@ for (let i = 0; i < 4; i++) {
   } else {
     for (let k = 0; k < 4; k++) {
       tr.appendChild(td);
-      td.innerText = "data";
+      td.innerText = tableData[i][k];
       td = document.createElement("td");
     }
   }
