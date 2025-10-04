@@ -41,6 +41,10 @@ thead.appendChild(tr);
 
 for (let i = 0; i < 3; i++) {
   tr.appendChild(th);
+  th.innerText = "heading";
+  if (i == 2) {
+    th.colSpan = 2;
+  }
   th = document.createElement("th");
 }
 table.appendChild(tbody);
@@ -48,8 +52,20 @@ table.appendChild(tbody);
 for (let i = 0; i < 4; i++) {
   tr = document.createElement("tr");
   tbody.appendChild(tr);
-  for (let k = 0; k < 4; k++) {
-    tr.appendChild(td);
-    td = document.createElement("td");
+  if (i == 0) {
+    for (let k = 0; k < 3; k++) {
+      tr.appendChild(td);
+      td.innerText = "data";
+      if (k == 2) {
+        td.colSpan = 2;
+      }
+      td = document.createElement("td");
+    }
+  } else {
+    for (let k = 0; k < 4; k++) {
+      tr.appendChild(td);
+      td.innerText = "data";
+      td = document.createElement("td");
+    }
   }
 }

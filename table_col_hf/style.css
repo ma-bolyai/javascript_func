@@ -5,6 +5,10 @@ td {
   border-collapse: collapse;
 }
 
+table {
+  margin-bottom: 1rem;
+}
+
 tbody {
   background-color: yellow;
 }
