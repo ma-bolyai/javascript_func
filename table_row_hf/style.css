@@ -18,4 +18,8 @@ td:nth-last-child(3) {
   background-color: #999;
 }
 
+table {
+  margin-bottom: 1rem;
+}
+
 /* tanar ur ez a vilag legrakosabb dolga kerem tobbet ne adjon fel ilyet, inkabb akkor hasznaljunk mar scss-t <3 */
