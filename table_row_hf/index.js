@@ -30,31 +30,35 @@ const arr = [
   },
 ];
 
-const headingData = ["Harc megnevezése", "Szembenálló felek", "Haderő"];
+/**
+ * @type {string[]}
+ */
+const heading = ["Harc megnevezése", "Szembenálló felek", "Haderő"];
+
 const table = document.createElement("table");
 const thead = document.createElement("thead");
 const tbody = document.createElement("tbody");
 
-let tr = document.createElement("tr");
-let td = document.createElement("td");
-
+document.body.appendChild(table);
 table.appendChild(thead);
 table.appendChild(tbody);
-thead.appendChild(tr);
-document.body.appendChild(table);
 
-for (const item of headingData) {
+for (item of heading) {
   const th = document.createElement("th");
   th.innerText = item;
-  tr.appendChild(th);
+  thead.appendChild(th);
 }
 
-for (const item of arr) {
-  tr = document.createElement("tr");
-  for (let i = 0; i < 3; i++) {
-    td = document.createElement("td");
-    td.innerText = item;
+for (item of arr) {
+  const tr = document.createElement("tr");
+  tbody.appendChild(tr);
+  for (key in item) {
+    const td = document.createElement("td");
+    td.innerText = item[key];
+    console.log(key);
+    if (key == "war") {
+      td.rowSpan = 2;
+    }
     tr.appendChild(td);
   }
-  tbody.appendChild(tr);
 }
