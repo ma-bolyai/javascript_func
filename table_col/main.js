@@ -35,30 +35,43 @@ const header = ["Szerző neve", "Korszak", "Szerelmek"];
 const table = document.createElement("table");
 const thead = document.createElement("thead");
 const tbody = document.createElement("tbody");
+let tr = document.createElement("tr");
 
 document.body.appendChild(table);
 table.appendChild(thead);
 table.appendChild(tbody);
 
 for (const item of header) {
-  const th = document.createElement("th");
-  th.innerText = item;
-  if (header.indexOf(item) === header.indexOf(header.at(-1))) {
-    th.colSpan = 2;
+  // const th = document.createElement("th");
+  // th.innerText = item;
+  // if (header.indexOf(item) === header.indexOf(header.at(-1))) {
+  //   th.colSpan = 2;
+  // }
+  // thead.appendChild(th);
+
+  let heading = createCell("th", item, thead);
+  if (item == header.at(-1)) {
+    heading.colSpan = 2;
   }
-  thead.appendChild(th);
 }
 
 for (const data of arr) {
-  const tr = document.createElement("tr");
+  tr = document.createElement("tr");
   tbody.appendChild(tr);
+
+  // for (const key in data) {
+  //   const td = document.createElement("td");
+  //   td.innerText = data[key];
+  //   if (key == "lover1" && !data.lover2) {
+  //     td.colSpan = 2;
+  //   }
+  //   tr.appendChild(td);
+  // }
   for (const key in data) {
-    const td = document.createElement("td");
-    td.innerText = data[key];
-    if (data[key] == "Vajda Juliána") {
-      td.colSpan = 2;
+    let cell = createCell("td", data[key], tr);
+    if (key == "lover1" && !data.lover2) {
+      cell.colSpan = 2;
     }
-    tr.appendChild(td);
   }
 }
 
@@ -69,4 +82,9 @@ for (const data of arr) {
  * @param {HTMLTableRowElement} parentRow specific row of the table
  * @returns {HTMLTableCellElement}
  */
-function createCell(cellType, cellContent, parentRow) {}
+function createCell(cellType, cellContent, parentRow) {
+  let cell = document.createElement(cellType);
+  cell.innerText = cellContent;
+  parentRow.appendChild(cell);
+  return cell;
+}
