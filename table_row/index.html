@@ -2,12 +2,13 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
   <title>Groteszk</title>
 </head>
 
 <body>
+
   <table>
     <thead>
       <tr>
@@ -16,7 +17,7 @@
         <th>Mű</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody">
       <tr>
         <td rowspan="2">Orosz</td>
         <td>Gogol</td>
@@ -47,16 +48,35 @@
       </tr>
     </tbody>
   </table>
-
   <div id="gyakorlas">
-    <button>Gomb 1</button>
-    <button>Gomb 2</button>
-    <button>Gomb 3</button>
+    <button>Gomb1</button>
+    <button>Gomb2</button>
+    <button>Gomb3</button>
     <p>Gyakorlo bekezdes</p>
   </div>
+  <a>Gyakorlo link</a>
 
-  <a href="">Gyakorlo link</a>
-  <script src="kitero.js"></script>
+  <form id="htmlform">
+    <label for="nemzetiseg">Nemzetiség:</label><br>
+    <input type="text" id="nemzetiseg" name="nemzetiseg"><br><br>
+
+    <label for="szerzo1">Szerző:</label><br>
+    <input type="text" id="szerzo1" name="szerzo1"><br><br>
+
+    <label for="mu1">Mű:</label><br>
+    <input type="text" id="mu1" name="mu1"><br><br>
+
+    <label for="szerzo2">Másik Szerző:</label><br>
+    <input type="text" id="szerzo2" name="szerzo2"><br><br>
+
+    <label for="mu2">Mű:</label><br>
+    <input type="text" id="mu2" name="mu2"><br><br>
+
+    <button>Hozzáadás</button>
+  </form>
+  <br>
+  <script src="index.js"></script>
+
 </body>
 
 </html>
