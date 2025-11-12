@@ -28,148 +28,177 @@ const arr = [
   },
 ];
 
-// TODO: finish
-
-const table = document.createElement("table");
-const thead = document.createElement("thead");
-const tbody = document.createElement("tbody");
-
-document.body.appendChild(table);
-table.appendChild(thead);
-table.appendChild(tbody);
-
 /**
  * @type {{headers: string}[]}
  */
 const headers = ["Nemzetiseg", "Szerző", "Mű"];
 
-const tr = document.createElement("tr");
-thead.appendChild(tr);
+const generatedTable = renderTableBody(arr);
+document.body.appendChild(generatedTable);
 
-for (const item of headers) {
-  const th = document.createElement("th");
-  tr.appendChild(th);
-  th.innerText = item;
-}
+populateTableBody(generatedTable, headers, arr);
 
-// problematic section begins
+// TODO: finish
 
-for (const item of arr) {
+/**
+ * @returns {HTMLTableElement}
+ * @param {object[]} array
+ */
+function renderTableBody(array) {
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
   const tr = document.createElement("tr");
-  tbody.appendChild(tr);
+  thead.appendChild(tr);
 
-  const td_nat = document.createElement("td");
-  tr.appendChild(td_nat);
+  for (const item of headers) {
+    const th = document.createElement("th");
+    tr.appendChild(th);
+  }
 
-  td_nat.addEventListener("click", (e) => {
-    /**
-     * @type {HTMLTableCellElement}
-     */
-    const target = e.target;
-    target.classList.add("marked");
-  });
+  // problematic section begins
 
-  const td_name = document.createElement("td");
-  tr.appendChild(td_name);
-
-  const td_title = document.createElement("td");
-  tr.appendChild(td_title);
-
-  td_nat.innerText = item.nationality;
-  td_name.innerText = item.name;
-  td_title.innerText = item.title;
-
-  // fixed a typo and it works, im an idiot
-
-  if (item.name && item.title2) {
+  for (const item of array) {
     const tr = document.createElement("tr");
     tbody.appendChild(tr);
 
-    const td_name2 = document.createElement("td");
-    tr.appendChild(td_name2);
+    const td_nat = document.createElement("td");
+    tr.appendChild(td_nat);
 
-    const td_title2 = document.createElement("td");
-    tr.appendChild(td_title2);
+    td_nat.addEventListener("click", (e) => {
+      /**
+       * @type {HTMLTableCellElement}
+       */
+      const target = e.target;
+      target.classList.add("marked");
+    });
 
-    td_name2.innerText = item.name2;
-    td_title2.innerText = item.title2;
+    const td_name = document.createElement("td");
+    tr.appendChild(td_name);
 
-    td_nat.rowSpan = 2;
+    const td_title = document.createElement("td");
+    tr.appendChild(td_title);
+
+    td_nat.innerText = item.nationality;
+    td_name.innerText = item.name;
+    td_title.innerText = item.title;
+
+    // fixed a typo and it works, im an idiot
+
+    if (item.name && item.title2) {
+      const tr = document.createElement("tr");
+      tbody.appendChild(tr);
+
+      const td_name2 = document.createElement("td");
+      tr.appendChild(td_name2);
+
+      const td_title2 = document.createElement("td");
+      tr.appendChild(td_title2);
+
+      td_name2.innerText = item.name2;
+      td_title2.innerText = item.title2;
+
+      td_nat.rowSpan = 2;
+    }
   }
-}
 
-// user input section
+  // user input section
 
-/**
- * @type {HTMLFormElement}
- */
-const form = document.getElementById("htmlform");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
   /**
    * @type {HTMLFormElement}
    */
-  const target = e.target;
+  const form = document.getElementById("htmlform");
 
-  /**
-   * @type {{nationality: HTMLInputElement, name: HTMLInputElement, name2: HTMLInputElement, title: HTMLInputElement, title2: HTMLInputElement}}
-   */
-  const inputs = {
-    nationality: target.querySelector("#nemzetiseg"),
-    name: target.querySelector("#szerzo1"),
-    name2: target.querySelector("#szerzo2"),
-    title: target.querySelector("#mu1"),
-    title2: target.querySelector("#mu2"),
-  };
-
-  const values = {
-    nationality: inputs.nationality.value,
-    name: inputs.name.value,
-    name2: inputs.name2.value,
-    title: inputs.title.value,
-    title2: inputs.title2.value,
-  };
-
-  const tr = document.createElement("tr");
-  tbody.appendChild(tr);
-
-  const td_nat = document.createElement("td");
-  tr.appendChild(td_nat);
-
-  td_nat.addEventListener("click", (e) => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
     /**
-     * @type {HTMLTableCellElement}
+     * @type {HTMLFormElement}
      */
     const target = e.target;
-    target.classList.add("marked");
-  });
 
-  const td_name = document.createElement("td");
-  tr.appendChild(td_name);
+    /**
+     * @type {{nationality: HTMLInputElement, name: HTMLInputElement, name2: HTMLInputElement, title: HTMLInputElement, title2: HTMLInputElement}}
+     */
+    const inputs = {
+      nationality: target.querySelector("#nemzetiseg"),
+      name: target.querySelector("#szerzo1"),
+      name2: target.querySelector("#szerzo2"),
+      title: target.querySelector("#mu1"),
+      title2: target.querySelector("#mu2"),
+    };
 
-  const td_title = document.createElement("td");
-  tr.appendChild(td_title);
+    const values = {
+      nationality: inputs.nationality.value,
+      name: inputs.name.value,
+      name2: inputs.name2.value,
+      title: inputs.title.value,
+      title2: inputs.title2.value,
+    };
 
-  td_nat.innerText = values.nationality;
-  td_name.innerText = values.name;
-  td_title.innerText = values.title;
-
-  // shitty rowspan cells
-
-  if (values.name && values.title2) {
     const tr = document.createElement("tr");
     tbody.appendChild(tr);
 
-    const td_name2 = document.createElement("td");
-    tr.appendChild(td_name2);
+    const td_nat = document.createElement("td");
+    tr.appendChild(td_nat);
 
-    const td_title2 = document.createElement("td");
-    tr.appendChild(td_title2);
+    td_nat.addEventListener("click", (e) => {
+      /**
+       * @type {HTMLTableCellElement}
+       */
+      const target = e.target;
+      target.classList.add("marked");
+    });
 
-    td_name2.innerText = values.name2;
-    td_title2.innerText = values.title2;
+    const td_name = document.createElement("td");
+    tr.appendChild(td_name);
 
-    td_nat.rowSpan = 2;
+    const td_title = document.createElement("td");
+    tr.appendChild(td_title);
+
+    td_nat.innerText = values.nationality;
+    td_name.innerText = values.name;
+    td_title.innerText = values.title;
+
+    // shitty rowspan cells
+
+    if (values.name && values.title2) {
+      const tr = document.createElement("tr");
+      tbody.appendChild(tr);
+
+      const td_name2 = document.createElement("td");
+      tr.appendChild(td_name2);
+
+      const td_title2 = document.createElement("td");
+      tr.appendChild(td_title2);
+
+      td_name2.innerText = values.name2;
+      td_title2.innerText = values.title2;
+
+      td_nat.rowSpan = 2;
+    }
+  });
+
+  return table;
+}
+
+/**
+ * @returns {void}
+ * @param {HTMLTableElement} table
+ * @param {string[]} array1
+ * @param {object[]} array2
+ */
+function populateTableBody(table, array1, array2) {
+  const thEmpty = table.getElementsByTagName("th");
+
+  let i = 0;
+  for (const item of array1) {
+    thEmpty[i].innerText = item;
+    i++;
   }
-});
+
+  const tdEmpty = table.getElementsByTagName("td");
+}
