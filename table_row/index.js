@@ -33,15 +33,16 @@ const arr = [
 ];
 
 /**
- * @type {{headers: string}[]}
+ * @type {string[]}
  */
 const headers = ["Nemzetiség", "Szerző", "Mű"];
 
 const table = document.createElement("table");
-document.body.appendChild(table);
 
 renderTableHead(table, headers);
 
 renderTableBody(table, arr);
 
 renderTableRow(table, arr);
+
+document.body.appendChild(table);

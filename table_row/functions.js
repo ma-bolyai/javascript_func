@@ -27,7 +27,15 @@ function renderTableBody(table, array) {
   const tbody = document.createElement("tbody");
   table.appendChild(tbody);
 
-  // problematic section begins
+  htmlEventListener("submit");
+}
+
+/**
+ * @param {HTMLTableElement} table
+ * @param {CountryWriters[]} array
+ */
+function renderTableRow(table, array) {
+  const tbody = table.querySelector("tbody");
 
   for (const item of array) {
     const tr = document.createElement("tr");
@@ -37,26 +45,13 @@ function renderTableBody(table, array) {
     // tr.appendChild(td_nat);
     const tdNat = createCell("td", item.nationality, tr);
 
-    tdNat.addEventListener("click", (e) => {
-      /**
-       * @type {HTMLTableCellElement}
-       */
-      const target = e.target;
-      const isMarked = target.parentElement.querySelector(".marked");
-      if (!isMarked) {
-        target.classList.add("marked");
-      } else {
-        target.classList.remove("marked");
-      }
-    });
-
     // const td_name = document.createElement("td");
     // tr.appendChild(td_name);
-    const tdName = createCell("td", item.name, tr);
+    createCell("td", item.name, tr);
 
     // const td_title = document.createElement("td");
     // tr.appendChild(td_title);
-    const tdTitle = createCell("td", item.title, tr);
+    createCell("td", item.title, tr);
 
     // td_nat.innerText = item.nationality;
     // td_name.innerText = item.name;
@@ -70,25 +65,13 @@ function renderTableBody(table, array) {
 
       //   const td_name2 = document.createElement("td");
       //   tr.appendChild(td_name2);
-      const tdName2 = createCell("td", item.name2, tr);
+      createCell("td", item.name2, tr);
 
       //   const td_title2 = document.createElement("td");
       //   tr.appendChild(td_title2);
-      const tdTitle2 = createCell("td", item.title2, tr);
+      createCell("td", item.title2, tr);
 
       tdNat.rowSpan = 2;
-    }
-  }
-}
-
-/**
- * @param {HTMLTableElement} table
- * @param {CountryWriters[]} array
- */
-function renderTableRow(table, array) {
-  const target = table.querySelector("tbody");
-  for (const item of array) {
-    for (const key in item) {
     }
   }
 }
@@ -109,15 +92,15 @@ function createCell(cellType, cellContent, parentRow) {
 }
 
 /**
- * @param {Event} e
+ * @param {Event} event
  */
-function htmlEventListener(e) {
+function htmlEventListener(event) {
   /**
    * @type {HTMLFormElement}
    */
   const form = document.getElementById("htmlform");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener(event, (e) => {
     e.preventDefault();
     /**
      * @type {HTMLFormElement}
@@ -143,6 +126,8 @@ function htmlEventListener(e) {
       title2: inputs.title2.value,
     };
 
+    const tbody = table.querySelector("tbody");
+
     const tr = document.createElement("tr");
     tbody.appendChild(tr);
 
@@ -160,11 +145,11 @@ function htmlEventListener(e) {
 
     // const td_name = document.createElement("td");
     // tr.appendChild(td_name);
-    const tdName = createCell("td", values.name, tr);
+    createCell("td", values.name, tr);
 
     // const td_title = document.createElement("td");
     // tr.appendChild(td_title);
-    const tdTitle = createCell("td", values.title, tr);
+    createCell("td", values.title, tr);
 
     // shitty rowspan cells
 
@@ -174,11 +159,11 @@ function htmlEventListener(e) {
 
       //   const td_name2 = document.createElement("td");
       //   tr.appendChild(td_name2);
-      const tdName2 = createCell("td", values.name2);
+      createCell("td", values.name2, tr);
 
       //   const td_title2 = document.createElement("td");
       //   tr.appendChild(td_title2);
-      const tdTitle2 = createCell("td", values.title2);
+      createCell("td", values.title2, tr);
 
       tdNat.rowSpan = 2;
     }
